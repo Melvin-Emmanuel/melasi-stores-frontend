@@ -34,5 +34,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "typings.d.ts"]
+  "include": ["src", "typings.d.ts", "../dashboard/src/routes"]
 }
