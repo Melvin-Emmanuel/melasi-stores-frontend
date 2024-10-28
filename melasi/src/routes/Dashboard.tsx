@@ -35,7 +35,7 @@ const routesConfig: RouteObject[]=[
                 element: withSuspense(Products),
                 children: [
                     {path: "list", element: withSuspense(List)},
-                    {path: "edit/:id", element: withSuspense(Edit)},
+                    {path: "edit", element: withSuspense(Edit)},
                     {path: "create", element: withSuspense(Create)},
                 ]
             },

@@ -31,7 +31,7 @@ const categories: Category[] = [
     image: cat1,
   },
   {
-    id: 'CH492-9',
+    id: 'HB73028',
     name: 'Phones',
     priceRange: '$50 to $200',
     createdBy: 'Admin',
@@ -39,7 +39,7 @@ const categories: Category[] = [
     image: cat1,
   },
   {
-    id: 'CH492-9',
+    id: 'HB73027',
     name: 'Memory Cards',
     priceRange: '$50 to $200',
     createdBy: 'Admin',
@@ -47,7 +47,7 @@ const categories: Category[] = [
     image: cat1,
   },
   {
-    id: 'CH492-9',
+    id: 'HB73026',
     name: 'Phones Accessories',
     priceRange: '$50 to $200',
     createdBy: 'Admin',
@@ -55,7 +55,7 @@ const categories: Category[] = [
     image: cat1,
   },
   {
-    id: 'CH492-9',
+    id: 'HB73025',
     name: 'Chargers',
     priceRange: '$50 to $200',
     createdBy: 'Admin',
@@ -63,7 +63,7 @@ const categories: Category[] = [
     image: cat1,
   },
   {
-    id: 'CH492-9',
+    id: 'HB73024',
     name: 'SIM Cards',
     priceRange: '$50 to $200',
     createdBy: 'Admin',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaShoppingBasket, FaBox, FaLock, FaClipboardList, FaTags, FaFileInvoice } from 'react-icons/fa';
 import SidebarItem from './SidebarItem';
 import {useNavigate } from 'react-router-dom';
@@ -9,9 +9,18 @@ const Sidebar:React.FC = () => {
     const [openItem, setOpenItem] = useState<string | null>(null)
     const navigate = useNavigate()
 
-    const handleItemClick = (label: string) =>{
+    // onMount, set the active item from localStorage or default to dashboard
+    useEffect(()=>{
+      const storedActiveItem = localStorage.getItem("activeSidebarItem") || "Dashboard"
+      setActiveItem(storedActiveItem)
+    },[])
+
+    // function  to handle clicking  a sidebar item
+    const handleItemClick = (label: string, path: string) =>{
         setActiveItem(label)
-        setOpenItem((prev)=> (prev === label ? null : label))
+        setOpenItem(prev => (prev === label ? null : label))
+        localStorage.setItem("activeSidebarItem", label)
+        navigate(path)
     }
 
   return (
@@ -26,22 +35,21 @@ const Sidebar:React.FC = () => {
         <SidebarItem
             label="Dashboard"
             icon={<FaBox />}
-            path='#'
-            isActive={activeItem === "Dashboard"}
-            onClick={()=> { handleItemClick("Dashboard");
-                            navigate("/")}}
+            path='/'
             isOpen={openItem === "Dashboard"}
+            isActive={activeItem === "Dashboard"}
+            onClick={() => handleItemClick("Dashboard", "/")}
             />
 
         <SidebarItem
           label="Products"
           icon={<FaShoppingBasket />}
-          path='#'
-          isActive={activeItem === "Products"}
-          onClick={()=> handleItemClick("Products")}
+          path='/products'
           isOpen={openItem === "Products"}
+          isActive={activeItem === "Products"}
+          onClick={() => handleItemClick("Products", "admin/products/list")}
           subItems={[
-            { label: 'List', path: 'admin/products/list' },
+            // { label: 'List', path: 'admin/products/list' },
             { label: 'Edit', path: 'admin/products/edit' },
             { label: 'Create', path: 'admin/products/create' },
           ]}
@@ -50,39 +58,28 @@ const Sidebar:React.FC = () => {
         <SidebarItem
           label="Category"
           icon={<FaBox />}
-          path='#'
-          isActive={activeItem === "Category"}
-          onClick={()=> handleItemClick("Category")}
+          path='/category'
           isOpen={openItem === "Category"}
+          isActive={activeItem === "Category"}
+          onClick={() => handleItemClick("Category", "admin/category/list")}
           subItems={[
-            { label: 'List', path: 'admin/category/list' },
+            // { label: 'List', path: 'admin/category/list' },
             { label: 'Edit', path: 'admin/category/edit' },
             { label: 'Create', path: 'admin/category/create' },
           ]}
         />
 
-        {/* <SidebarItem
-          label="Inventory"
-          icon={<FaClipboardList />}
-          path='#'
-          isActive={activeItem === "Inventory"}
-          onClick={()=> handleItemClick("Inventory")}
-          isOpen={openItem === "Inventory"}
-          subItems={[
-            { label: 'Stock', path: '/inventory/stock' },
-            { label: 'Warehouse', path: '/inventory/warehouse' },
-          ]}
-        /> */}
          <SidebarItem
           label="Orders"
           icon={<FaLock />}
+          path='/orders'
+          isOpen={openItem === "Orders"}
+          isActive={activeItem === "Orders"}
+            onClick={() => handleItemClick("Orders", "admin/orders/list")}
           subItems={[
-            { label: 'Order List', path: 'admin/orders/list' },
+            // { label: 'Order List', path: 'admin/orders/list' },
             { label: 'Track Order', path: 'admin/orders/track' },
           ]}
-          isActive={activeItem === 'Orders'}
-          onClick={() => handleItemClick('Orders')}
-          isOpen={openItem === 'Orders'}
         />
 
         {/* <SidebarItem

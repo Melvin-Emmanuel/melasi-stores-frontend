@@ -4,7 +4,7 @@ import phone from "../../../assets/images/phone1.png"
 import phone2 from "../../../assets/images/phone2.png"
 import phone3 from "../../../assets/images/phone3.png"
 
-const List = () => {
+const List:React.FC = () => {
     const recentData = [
         {
             id: "#RB5625",
@@ -31,7 +31,7 @@ const List = () => {
             delete: <FaTrash/>
           },
           {
-            id: "#RB9652",
+            id: "#RB9653",
             date: "25/2/2024",
             productImage: phone3,
             productName: "Camera",
@@ -47,7 +47,7 @@ const List = () => {
   return (
     <div>
         {/* Recent Orders */}
-      <div className="bg-white rounded-lg shadow-md p-4">
+      <div className="bg-white rounded-lg shadow-md p-4 mt-4">
         <div className="flex justify-between text-sm font-semibold items-center mb-4">
             <h2 className="">All Product List</h2>
             <button className="bg-[#ff5f00] text-[#fff] border-none py-2 px-4 rounded cursor-pointer transition-all duration-300 ease-linear hover:bg-[#e85600]">Add Product</button>
