@@ -1,56 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaEdit, FaTrash } from 'react-icons/fa'
-import phone from "../../../assets/images/phone1.png"
-import phone2 from "../../../assets/images/phone2.png"
-import phone3 from "../../../assets/images/phone3.png"
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../../redux/store'
+import { fetchProducts } from '../../../features/product/productSlice'
+import { useNavigate } from 'react-router-dom'
 
 const List:React.FC = () => {
-    const recentData = [
-        {
-            id: "#RB5625",
-            productImage: phone,
-            productName: "Laptop",
-            price: "800",
-            stock: "32 items left",
-            stockSold: "4 sold",
-            category: "Fashion",
-            action: "Festac",
-            edit: <FaEdit/>,
-            delete: <FaTrash/>
-          },
-          {
-            id: "#RB9652",
-            productImage: phone2,
-            productName: "Camera",
-            price: "500",
-            stock: "41 items left",
-            stockSold: "4 sold",
-            category: "Appliance",
-            action: "Festac",
-            edit: <FaEdit/>,
-            delete: <FaTrash/>
-          },
-          {
-            id: "#RB9653",
-            date: "25/2/2024",
-            productImage: phone3,
-            productName: "Camera",
-            price: "600",
-            stock: "12 items left",
-            stockSold: "4 sold",
-            category: "Gadget",
-            action: "Festac",
-            edit: <FaEdit/>,
-            delete: <FaTrash/>
-          },
-    ]
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const {products} = useSelector((state: RootState) => state.product)
+  console.log("Here", products)
+
+  // fetch products on component mount
+  useEffect(()=>{
+    dispatch(fetchProducts())
+  }, [dispatch])
+
   return (
     <div>
         {/* Recent Orders */}
       <div className="bg-white rounded-lg shadow-md p-4 mt-4">
         <div className="flex justify-between text-sm font-semibold items-center mb-4">
             <h2 className="">All Product List</h2>
-            <button className="bg-[#ff5f00] text-[#fff] border-none py-2 px-4 rounded cursor-pointer transition-all duration-300 ease-linear hover:bg-[#e85600]">Add Product</button>
+            <button className="bg-[#ff5f00] text-[#fff] border-none py-2 px-4 rounded cursor-pointer transition-all duration-300 ease-linear hover:bg-[#e85600]" onClick={()=> navigate("/admin/products/create")}>Add Product</button>
         </div>
         <div className="overflow-x-auto">
         <table className="min-w-full text-sm table-auto border-collapse">
@@ -65,24 +37,20 @@ const List:React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {recentData.map((order) => (
-              <tr key={order.id} className="border-b">
-                <td className="py-3 px-4">{order.id}</td>
-                <td className="py-3 px-4 flex items-center gap-1">
+            {products.map((order) => (
+              <tr key={order._id} className="border-b">
+                <td className="py-3 px-4">{order._id.slice(-6)}</td>
+                <td className="py-3 px-4 max-w-96 flex items-center gap-2">
                   <img
-                    src={order.productImage}
-                    alt={order.productName}
-                    className="w-10 h-10 object-cover rounded-md"
+                    src={order.Image}
+                    alt={order.Name}
+                    className="w-12 h-12 object-contain rounded-md"
                   />
-                  <p>{order.productName}</p>
+                  <p className='max-w-72 '>{order.Name}</p>
                 </td>
-                <td className="py-3 px-4 ">{order.price}</td>
-                <td className="py-3 px-4"><p>{order.stock} </p> <p className='text-gray-600'>{order.stockSold}</p></td>
-                <td className="py-3 px-4">{order.category}</td>
-                {/* <td className="py-3 flex items-center mb-2 text-black text-xl gap-3">
-                    <div className='p-2 bg-blue-50 text-blue-600 rounded-md'>{order.edit}</div>
-                    <div className='p-2 bg-red-50 text-red-600 rounded-md'>{order.delete}</div>
-                </td> */}
+                <td className="py-3 px-4 ">{order.Price}</td>
+                <td className="py-3 px-4"><p>{order.Quantity} </p> <p className='text-gray-600'>{order.stockSold}</p></td>
+                <td className="py-3 px-4">{order.Category}</td>
                 <td className="py-3 flex space-x-2">
                   <button className="text-orange-600 p-2 text-xl rounded-full transition-all duration-500 ease-linear hover:bg-orange-100">
                     <FaEdit />

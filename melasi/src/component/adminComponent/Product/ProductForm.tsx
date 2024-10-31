@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ProductFormProps {
-  formData: { name: string; priceRange: string; createdBy: string; stock: number; description: string};
+  formData: { name: string; priceRange: string; createdBy: string; quantity: number; description: string; category: string; brand: string; weight:number; gender: string; tag: string; price: number};
   onChange: (name: string, value: string | number) => void;
   onSubmit: (e: React.FormEvent) => void;
 }
@@ -26,9 +26,9 @@ const ProductForm: React.FC<ProductFormProps> = ({ formData, onChange, onSubmit 
         <div className="mb-4 w-full">
           <label className="block text-gray-600 mb-1">Product Categories</label>
           <select
-            name="createdBy"
-            value={formData.createdBy}
-            onChange={(e) => onChange('createdBy', e.target.value)}
+            name="category"
+            value={formData.category}
+            onChange={(e) => onChange('category', e.target.value)}
             className="w-full border border-gray-300 rounded-md px-3 py-2"
             required
           >
@@ -48,10 +48,10 @@ const ProductForm: React.FC<ProductFormProps> = ({ formData, onChange, onSubmit 
           <label className="block text-gray-600 mb-1">Brand </label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="brand"
+            value={formData.brand}
             placeholder='Items name'
-            onChange={(e) => onChange('name', e.target.value)}
+            onChange={(e) => onChange('brand', e.target.value)}
             className="w-full border border-gray-300 rounded-md px-3 py-2"
             required
           />
@@ -59,11 +59,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ formData, onChange, onSubmit 
         <div className="mb-4 w-full">
           <label className="block text-gray-600 mb-1">Weight </label>
           <input
-            type="text"
-            name="name"
-            value={formData.name}
+            type="number"
+            name="weight"
+            value={formData.weight}
             placeholder='In gm & Kg'
-            onChange={(e) => onChange('name', e.target.value)}
+            onChange={(e) => onChange('weight', Number(e.target.value))}
             className="w-full border border-gray-300 rounded-md px-3 py-2"
             required
           />
@@ -71,9 +71,9 @@ const ProductForm: React.FC<ProductFormProps> = ({ formData, onChange, onSubmit 
         <div className="mb-4 w-full">
           <label className="block text-gray-600 mb-1">Gender</label>
           <select
-            name="createdBy"
-            value={formData.createdBy}
-            onChange={(e) => onChange('createdBy', e.target.value)}
+            name="gender"
+            value={formData.gender}
+            onChange={(e) => onChange('gender', e.target.value)}
             className="w-full border border-gray-300 rounded-md px-3 py-2"
             required
           >
@@ -92,20 +92,20 @@ const ProductForm: React.FC<ProductFormProps> = ({ formData, onChange, onSubmit 
           type="text"
           name="tag"
           placeholder='tag'
-          value={formData.stock}
-          onChange={(e) => onChange('tag', Number(e.target.value))}
+          value={formData.tag}
+          onChange={(e) => onChange('tag', e.target.value)}
           className="w-full border border-gray-300 rounded-md px-3 py-2"
 
         />
       </div>
       <div className="mb-4 w-full">
-        <label className="block text-gray-600 mb-1">Stock</label>
+        <label className="block text-gray-600 mb-1">Quantity</label>
         <input
           type="number"
-          name="stock"
+          name="quantity"
           placeholder='Quantity'
-          value={formData.stock}
-          onChange={(e) => onChange('stock', Number(e.target.value))}
+          value={formData.quantity}
+          onChange={(e) => onChange('quantity', Number(e.target.value))}
           className="w-full border border-gray-300 rounded-md px-3 py-2"
 
         />
@@ -116,7 +116,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ formData, onChange, onSubmit 
           type="number"
           name="price"
           placeholder='Enter price'
-          value={formData.stock}
+          value={formData.price}
           onChange={(e) => onChange('price', Number(e.target.value))}
           className="w-full border border-gray-300 rounded-md px-3 py-2"
 
@@ -126,7 +126,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ formData, onChange, onSubmit 
       <div className="mb-4">
         <label className="block text-gray-600 mb-1">Description</label>
         <textarea
-          name="stock"
+          name="description"
           placeholder='Type description'
           value={formData.description}
           onChange={(e) => onChange('description', e.target.value)}

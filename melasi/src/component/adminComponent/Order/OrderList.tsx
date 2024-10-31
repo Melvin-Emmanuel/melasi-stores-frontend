@@ -10,7 +10,7 @@ interface OrderCardProps{
 const OrderCard: React.FC<OrderCardProps> = ({title, count, icon}) => (
   <div className=" flex items-center justify-between p-4 bg-white shadow-sm rounded-lg">
     <div className="">
-      <h3 className='ext-gray-600 text-sm font-medium mb-2'>{title}</h3>
+      <h3 className='text-gray-600 text-sm font-medium mb-2'>{title}</h3>
       <p className='text-2xl font-semibold text-gray-800'>{count}</p>
     </div>
     <div className=" bg-orange-100 p-2 rounded-full"> {icon} </div>

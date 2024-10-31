@@ -19,21 +19,6 @@ console.log("products", products)
   dispatch(fetchProducts());
 }, [dispatch]);
 
-// if(status === "loading"){
-//   return <div>loading ...</div>
-// }
-// if(status === "failed"){
-//   return <div>Error: {error}</div>
-
-// }
-
-// Call fetchProducts when component mounts
-// useEffect(() => {
-//   fetchProducts();
-// }, []);
-
-// if (loading) return <div>Loading...</div>;
-// if (error) return <div>Error: {error}</div>;
 const navigate = useNavigate()
 const cartItems = useSelector((state: RootState)=> state.cart.items)
 const totalQuantity = cartItems.reduce((total, item)=> total + item.quantity, 0)

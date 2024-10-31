@@ -7,6 +7,7 @@ import Spinner from "../component/common/Spinner";
 const Dashboard = lazy(()=> import("../pages/AdminPages/Dashboard"))
 const Products = lazy(()=> import("../pages/AdminPages/Products"))
 const Orders = lazy(()=> import("../pages/AdminPages/Orders"))
+const Invoices = lazy(()=> import("../pages/AdminPages/Invoices"))
 const List = lazy(()=> import('../component/adminComponent/Product/List'))
 const Edit = lazy(()=> import('../component/adminComponent/Product/Edit'))
 const Create = lazy(()=> import('../component/adminComponent/Product/Create'))
@@ -55,6 +56,10 @@ const routesConfig: RouteObject[]=[
                     {path: "list", element: withSuspense(OrderList)},
                     {path: "track/:id", element: withSuspense(OrderTrack)},
                 ]
+            },
+            {
+                path: "admin/invoices",
+                element: withSuspense(Invoices),
             },
             {path: "*", element: withSuspense(Dashboard)} //fallback routes
         ]

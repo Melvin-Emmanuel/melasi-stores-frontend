@@ -75,51 +75,21 @@ const Sidebar:React.FC = () => {
           path='/orders'
           isOpen={openItem === "Orders"}
           isActive={activeItem === "Orders"}
-            onClick={() => handleItemClick("Orders", "admin/orders/list")}
+          onClick={() => handleItemClick("Orders", "admin/orders/list")}
           subItems={[
             // { label: 'Order List', path: 'admin/orders/list' },
             { label: 'Track Order', path: 'admin/orders/track' },
           ]}
         />
 
-        {/* <SidebarItem
-          label="Purchases"
-          icon={<FaClipboardList />}
-          path="/purchases"
-          isActive={activeItem === 'Purchases'}
-          onClick={() => handleItemClick('Purchases')}
-          isOpen={openItem === 'Purchases'}
-          subItems={[
-            { label: 'Order List', path: '/orders/list' },
-            { label: 'Track Order', path: '/orders/track' },
-          ]}
-        /> */}
-
-        {/* <SidebarItem
-          label="Attributes"
-          icon={<FaTags />}
-          path="/attributes"
-          isActive={activeItem === 'Attributes'}
-          onClick={() => handleItemClick('Attributes')}
-          isOpen={openItem === 'Attributes'}
-          subItems={[
-            { label: 'Order List', path: '/orders/list' },
-            { label: 'Track Order', path: '/orders/track' },
-          ]}
-        /> */}
-
-        {/* <SidebarItem
+        <SidebarItem
           label="Invoices"
           icon={<FaFileInvoice />}
           path="/invoices"
           isActive={activeItem === 'Invoices'}
-          onClick={() => handleItemClick('Invoices')}
+          onClick={() => handleItemClick('Invoices', "admin/invoices")}
           isOpen={openItem === 'Invoices'}
-          subItems={[
-            { label: 'Order List', path: '/orders/list' },
-            { label: 'Track Order', path: '/orders/track' },
-          ]}
-        /> */}
+        />
     </aside>
   )
 }
