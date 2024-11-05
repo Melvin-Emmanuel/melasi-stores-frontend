@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { apiGet } from "../../utils/axios";
+import { apiGet, apiPost } from "../../utils/axios";
 
 interface ProductState{
     products: any[];
@@ -31,6 +31,18 @@ export const fetchProductById = createAsyncThunk(
     "products/fetchProductById", async(id: number)=>{
         const response = await apiGet(`product/${id}`);
         return response.data
+    }
+)
+
+//create a new product
+export const createProduct = createAsyncThunk(
+    "products/createProduct", async(productData:any) =>{
+        try{
+            const response = await apiPost("/create-product", productData);
+            return response.data
+        }catch(error){
+            console.error("Error creating product", error)
+        }
     }
 )
 
@@ -67,6 +79,19 @@ const productSlice = createSlice({
         .addCase(fetchProductById.rejected, (state, action)=>{
             state.status = "failed";
             state.error = action.error.message || "Failed to fetch product"
+        })
+        // handle createProduct
+        builder
+        .addCase(createProduct.pending, (state)=>{
+            state.status = "loading"
+        })
+        .addCase(createProduct.fulfilled, (state, action)=>{
+            state.status = "succeeded";
+            state.products.push(action.payload)
+        })
+        .addCase(createProduct.rejected, (state, action)=>{
+            state.status = "failed";
+            state.error = action.error.message || "Failed to create product"
         })
     },
 })

@@ -23,14 +23,6 @@ const Home:React.FC = () => {
   // const {isAuthenticated, user} = useSelector((state: RootState)=>state.auth)
 
   const handleUserIconClick = ()=>{
-    // if(isAuthenticated){
-    //   //if the user is authenticated, navigate to the profile page
-    //   navigate("/")
-    // }else{
-    //   //if the user is not authenticated, navigate to the login page
-    //   navigate("/login")
-    // }
-    // navigate("/")
     navigate("/login")
   }
   return (
@@ -48,7 +40,7 @@ const Home:React.FC = () => {
         <div className="flex items-center space-x-3">
           <div
           className="w-8 h-8 rounded-full flex items-center justify-center text-black font-bold"
-          onClick={handleUserIconClick} // Replace with your actual profile route
+          onClick={handleUserIconClick}
         >
            <FaUserCircle size={28} />
         </div>
